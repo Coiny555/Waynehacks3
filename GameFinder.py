@@ -2,9 +2,13 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/') #For the pages on the app 
 def home():
-    return "Hello, Flask! Goodbye boi!"
+    return render_template('home.html')
+
+@app.route('/about') #For the about page
+def about():
+    return render_template("about.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
