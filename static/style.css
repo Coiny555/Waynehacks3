@@ -1,13 +1,35 @@
 body {
-    background-color: white;
-    color: black;
+    color: white;
+    text-align: center;
+    /*
+    background-image: url("home-page-images/PS4_Controller.jpg");
+    background-size: 5%;
+    background-repeat: repeat;
+    */
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    margin: auto;
+    font-size: large;
+    display: grid;
+    grid-template-rows: auto 60px; 
+}
+
+.main {
 }
 
 h1 {
-    text-align: center;
+    font-size: 2.5em;
 }
 
-.center-text {
-    text-align: center;
-    display: block;
+footer {
+    margin-bottom: 0;
 }

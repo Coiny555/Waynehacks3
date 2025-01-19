@@ -19,52 +19,58 @@
             }
         </style>
     </head>
-<body style="background-color: whitesmoke;">
+<body>
+    <div class="top">
+        <h1>Game Finder</h1>
 
-    <img src="static/home-page-images/PS4_Controller.jpg" alt="PS4_Controller" width="200" height="200"/>
+        <p id="Paragraph 1">This website is to show game recommendations for you to play!</p>
 
-    <h1>Welcome to the homepage!!</h1> <!--A heading with an id of "myHeading"-->
+        <p id="Paragraph 2">With the upmost PECRISE of games to your liking!</p>
+        
+        <form class="center-text" id="user-input-form">
+            <label for="genre">Insert Genre:</label>
+            <select id="genre" name="genre">
+                <option value="action">Action</option>
+                <option value="adventure">Adventure</option>
+                <option value="beat_em_up">Beat em up</option>
+                <option value="cards">Cards</option>
+                <option value="exploration">Exploration</option>
+                <option value="fighting">Fighting</option>
+                <option value="metroidvania">Metroidvania</option>
+                <option value="platformer">Platformer</option>
+                <option value="puzzle">Puzzle</option>
+                <option value="roguelike">Roguelike</option>
+                <option value="rpg">RPG</option>
+                <option value="run_&_gun">Run & Gun</option>
+                <option value="sandbox">Sandbox</option>
+                <option value="shooter">Shooter</option>
+                <option value="simulation">Simulation</option>
+                <option value="survival">Survival</option>
+            </select>
+        
+            <label for="playtime">Playtime (hours):</label>
+            <input type="number" id="playtime" name="playtime" min="1" max="100">
+        
+            <label for="aspect">Select Game Diffculty:</label>
+            <select id="Diffculty" name="Diffculty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        
+            <button type="submit">Get Recommendations</button>
+        </form>
 
-    <p id="Paragraph 1" class = "center-text">This website is to show game  <br> reccommendations for you to play!</p> <!--A paragraph with an id of "myParagraph"-->
+        <div id="results"></div>
+    </div>
+    
+    <div class="bottom">
+        <footer>
+            <p>Repository at <a href="https://github.com/Coiny555/Waynehacks3">https://github.com/Coiny555/Waynehacks3</a></p>
+        </footer>
+    </div>
 
-    <br>
-    <br>
-
-    <p id="Paragraph 2" class = "center-text">With the upmost PECRISE of games to your liking!</p>
-
-    <br>
-    <br>
-
-    <a  href="/about" class = "center-text"> About</a>
-
-    <br>
-    <br>
-
-    <form class="center-text" id="user-input-form">
-        <label for="genre">Insert Genre:</label>
-        <select id="genre" name="genre">
-            <option value="action">Action</option>
-            <option value="adventure">Adventure</option>
-            <option value="rpg">RPG</option>
-            <option value="strategy">Strategy</option>
-        </select>
-      
-        <label for="playtime">Playtime (hours):</label>
-        <input type="number" id="playtime" name="playtime" min="1" max="100">
-      
-        <label for="aspect">Select Game Diffculty:</label>
-        <select id="Diffculty" name="Diffculty">
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-        </select>
-      
-        <button type="submit">Get Recommendations</button>
-      </form>
-      
-      <div id="results"></div>
-
-      <script>
+    <script>
         // Javascript
         const form = document.getElementById('user-input-form'); // document lets you access html elements
         form.addEventListener('submit', (event) => {
