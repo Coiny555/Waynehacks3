@@ -10,8 +10,18 @@ def home():
 def about():
     return render_template("about.html")
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/recommendations', methods=['POST'])
+def recommendations():
+    data = request.json  # Get data from the POST request
+    genre = data.get('genre')  # Extract genre from form data
+    difficulty = data.get('difficulty')  # Extract difficulty from form data
+    playtime = int(data.get('playtime'))  # Extract playtime and ensure it's an integer
+    
+    # Query the database for matching games
+    games = query_games(genre, difficulty, playtime)
+    
+    # Return the games as a JSON response
+    return jsonify(games)
 
 def query_games(genre, difficulty, estimated_playtime_per_session):
     conn = sqlite3.connect('GameFinder.db')
@@ -28,5 +38,8 @@ def query_games(genre, difficulty, estimated_playtime_per_session):
     results = cursor.fetchall()
     conn.close()
     return results
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 #This is, I believe a test file to set up flask, may make changes later

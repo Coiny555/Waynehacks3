@@ -1,5 +1,10 @@
-<!DOCTYPE html> <!--Using HTML 5-->
-<html>
+<!DOCTYPE html>
+<html lang="en"> <!-- Added lang attribute for accessibility -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <!-- Font and Style -->
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <style>
@@ -8,13 +13,10 @@
             font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
         }
         @supports (font-variation-settings: normal) {
-            :root { font-family: InterVariable, sans-serif; }
+            :root {
+                font-family: InterVariable, sans-serif;
+            }
         }
-    </style>
-    <head>
-        <title>Homepage</title> <!--Tab name-->
-    </head>
-    <style> 
         h1 {
             text-align: center;
         }
@@ -22,76 +24,126 @@
             text-align: center;
             display: block;
         }
-        
-    </style> <!--CSS-->
-<body style="background-color: whitesmoke;">
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            margin-top: 20px;
+        }
+        #results {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+        }
+        #results div {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px auto;
+            width: 80%;
+            background: #fff;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="home-page-images/PS4_Controller.jpg" alt="PS4 Controller" width="200" height="200" style="display: block; margin: 20px auto;">
+        <h1>Welcome to the Homepage!</h1>
+        <p class="center-text">This website provides game recommendations tailored to your preferences!</p>
+        <p class="center-text">Discover games curated for you with the utmost precision!</p>
+        <a href="/about" class="center-text">About</a>
+    </header>
 
-    <img src="home-page-images/PS4_Controller.jpg" alt="PS4_Controller" width="200" height="200"/>
+    <main>
+        <form class="center-text" id="user-input-form">
+            <label for="genre">Select Genre:</label>
+            <select id="genre" name="genre">
+                <option value="action">Action</option>
+                <option value="adventure">Adventure</option>
+                <option value="beat_em_up">Beat em up</option>
+                <option value="cards">Cards</option>
+                <option value="exploration">Exploration</option>
+                <option value="fighting">Fighting</option>
+                <option value="metroidvania">Metroidvania</option>
+                <option value="platformer">Platformer</option>
+                <option value="puzzle">Puzzle</option>
+                <option value="roguelike">Roguelike</option>
+                <option value="rpg">RPG</option>
+                <option value="run_&_gun">Run & Gun</option>
+                <option value="sandbox">Sandbox</option>
+                <option value="shooter">Shooter</option>
+                <option value="simulation">Simulation</option>
+                <option value="survival">Survival</option>
+            </select>
+            <br><br>
+            <label for="playtime">Playtime (hours):</label>
+            <input type="number" id="playtime" name="playtime" min="1" max="100">
+            <br><br>
+            <label for="difficulty">Select Game Difficulty:</label>
+            <select id="difficulty" name="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <br><br>
+            <button type="submit">Get Recommendations</button>
+        </form>
 
-    <h1>Welcome to the homepage!!</h1> <!--A heading with an id of "myHeading"-->
+        <div id="results"></div>
+    </main>
 
-    <p id="Paragraph 1" class = "center-text">This website is to show game  <br> reccommendations for you to play!</p> <!--A paragraph with an id of "myParagraph"-->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("user-input-form");
 
-    <br>
-    <br>
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
 
-    <p id="Paragraph 2" class = "center-text">With the upmost PECRISE of games to your liking!</p>
+                const genre = document.getElementById("genre").value;
+                const playtime = document.getElementById("playtime").value;
+                const difficulty = document.getElementById("difficulty").value;
 
-    <br>
-    <br>
+                try {
+                    const response = await fetch("/recommendations", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ genre, playtime, difficulty }),
+                    });
 
-    <a  href="/about" class = "center-text"> About</a>
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.status}`);
+                    }
 
-    <br>
-    <br>
+                    const results = await response.json();
+                    const resultsDiv = document.getElementById("results");
+                    resultsDiv.innerHTML = "";
 
-    <form class="center-text" id="user-input-form">
-        <label for="genre">Insert Genre:</label>
-        <select id="genre" name="genre">
-            <option value="action">Action</option>
-            <option value="adventure">Adventure</option>
-            <option value="beat_em_up">Beat em up</option>
-            <option value="cards">Cards</option>
-            <option value="exploration">Exploration</option>
-            <option value="fighting">Fighting</option>
-            <option value="metroidvania">Metroidvania</option>
-            <option value="platformer">Platformer</option>
-            <option value="puzzle">Puzzle</option>
-            <option value="roguelike">Roguelike</option>
-            <option value="rpg">RPG</option>
-            <option value="run_&_gun">Run & Gun</option>
-            <option value="sandbox">Sandbox</option>
-            <option value="shooter">Shooter</option>
-            <option value="simulation">Simulation</option>
-            <option value="survival">Survival</option>
-        </select>
-      
-        <label for="playtime">Playtime (hours):</label>
-        <input type="number" id="playtime" name="playtime" min="1" max="100">
-      
-        <label for="aspect">Select Game Diffculty:</label>
-        <select id="Diffculty" name="Diffculty">
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-        </select>
-      
-        <button type="submit">Get Recommendations</button>
-      </form>
-      
-      <div id="results"></div>
-
-      <script>
-        // Javascript
-        const form = document.getElementById('user-input-form'); // document lets you access html elements
-        form.addEventListener('submit', (event) => {
-            event.preventDefault(); // prevent default submission
-            const genre = document.getElementById('genre').value;
-            const playtime = document.getElementById('playtime').value;
-            const difficulty = document.getElementById('Diffculty').value;
+                    if (results.length > 0) {
+                        results.forEach((game) => {
+                            const gameElement = document.createElement("div");
+                            gameElement.innerHTML = `
+                                <div>
+                                    <img src="${game[4]}" alt="${game[0]}" width="100">
+                                    <p><strong>${game[0]}</strong> (${game[2]})</p>
+                                    <p>Genre: ${game[1]} | Playtime: ${game[3]} hours</p>
+                                </div>
+                            `;
+                            resultsDiv.appendChild(gameElement);
+                        });
+                    } else {
+                        resultsDiv.innerHTML = "<p>No games found. Try different filters!</p>";
+                    }
+                } catch (error) {
+                    console.error("Error fetching recommendations:", error);
+                    const resultsDiv = document.getElementById("results");
+                    resultsDiv.innerHTML = "<p>Something went wrong. Please try again later.</p>";
+                }
+            });
         });
     </script>
-      
-
 </body>
 </html>
