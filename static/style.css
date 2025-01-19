@@ -1,0 +1,13 @@
+body {
+    background-color: white;
+    color: black;
+}
+
+h1 {
+    text-align: center;
+}
+
+.center-text {
+    text-align: center;
+    display: block;
+}
