@@ -4,7 +4,11 @@ A web app to recommend video games based on user input and preferences (genre, d
 
 Contributors:
 
-to be added
+1. Eric Wong
+   
+2. Christian
+
+3. Kenyon Taylor
 
 
 
