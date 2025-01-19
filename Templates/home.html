@@ -1,64 +1,36 @@
-<!DOCTYPE html>
-<html lang="en"> <!-- Added lang attribute for accessibility -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <!-- Font and Style -->
-    <link rel="preconnect" href="https://rsms.me/">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <style>
-        :root {
-            font-family: Inter, sans-serif;
-            font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
-        }
-        @supports (font-variation-settings: normal) {
-            :root {
-                font-family: InterVariable, sans-serif;
-            }
-        }
-        h1 {
-            text-align: center;
-        }
-        .center-text {
-            text-align: center;
-            display: block;
-        }
-        body {
-            background-color: whitesmoke;
-            margin: 0;
-            padding: 0;
-        }
-        form {
-            margin-top: 20px;
-        }
-        #results {
-            margin-top: 20px;
-            padding: 10px;
-            text-align: center;
-        }
-        #results div {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin: 10px auto;
-            width: 80%;
-            background: #fff;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <img src="home-page-images/PS4_Controller.jpg" alt="PS4 Controller" width="200" height="200" style="display: block; margin: 20px auto;">
-        <h1>Welcome to the Homepage!</h1>
-        <p class="center-text">This website provides game recommendations tailored to your preferences!</p>
-        <p class="center-text">Discover games curated for you with the utmost precision!</p>
-        <a href="/about" class="center-text">About</a>
-    </header>
 
-    <main>
+<!DOCTYPE html> <!--Using HTML 5-->
+<html>
+    <head>
+        <title>Homepage</title> <!--Tab name-->
+
+        <!-- style sheet -->
+        <link rel="stylesheet" href="static/style.css">
+
+        <!-- adding the font -->
+        <link rel="preconnect" href="https://rsms.me/">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+        <style>
+            :root {
+                font-family: Inter, sans-serif;
+                font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+            }
+            @supports (font-variation-settings: normal) {
+                :root { font-family: InterVariable, sans-serif; }
+            }
+        </style>
+    </head>
+<body>
+    <div class="top">
+        <h1>Game Finder</h1>
+
+        <p id="Paragraph 1">This website is to show game recommendations for you to play!</p>
+
+        <p id="Paragraph 2">With the upmost PECRISE of games to your liking!</p>
+        
         <form class="center-text" id="user-input-form">
-            <label for="genre">Select Genre:</label>
+            <label for="genre">Insert Genre:</label>
+
             <select id="genre" name="genre">
                 <option value="action">Action</option>
                 <option value="adventure">Adventure</option>
@@ -77,21 +49,26 @@
                 <option value="simulation">Simulation</option>
                 <option value="survival">Survival</option>
             </select>
-            <br><br>
+
+        
             <label for="playtime">Playtime (hours):</label>
             <input type="number" id="playtime" name="playtime" min="1" max="100">
-            <br><br>
-            <label for="difficulty">Select Game Difficulty:</label>
-            <select id="difficulty" name="difficulty">
+        
+            <label for="aspect">Select Game Diffculty:</label>
+            <select id="Diffculty" name="Diffculty">
+
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
             </select>
+
             <br><br>
+
             <button type="submit">Get Recommendations</button>
         </form>
 
         <div id="results"></div>
+
     </main>
 
     <script>
@@ -147,3 +124,5 @@
     </script>
 </body>
 </html>
+
+

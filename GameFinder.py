@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -9,6 +9,7 @@ def home():
 @app.route('/about') #For the about page
 def about():
     return render_template("about.html")
+
 
 @app.route('/recommendations', methods=['POST'])
 def recommendations():
@@ -38,6 +39,7 @@ def query_games(genre, difficulty, estimated_playtime_per_session):
     results = cursor.fetchall()
     conn.close()
     return results
+
 
 if __name__ == '__main__':
     app.run(debug=True)
