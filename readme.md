@@ -6,7 +6,7 @@ Contributors:
 
 1. Eric Wong
    
-2. Christian
+2. Christian Vasu
 
 3. Kenyon Taylor
 
