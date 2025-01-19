@@ -30,6 +30,6 @@ to be added
 
 - Install dependencies from requirements.txt
 
-- Run python GameFinder.py in the terminal
+- Run python GameFinder.py in the terminal (you don't have to do this as the step below has the link to the webpage)
 
-- Open [127.0.0.1:5000](127.0.0.1:5000) in your web browser
+- Copy and paste http://127.0.0.1:5000 to your web browser
