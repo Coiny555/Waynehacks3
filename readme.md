@@ -22,7 +22,13 @@ to be added
 
 ### Locations
 
-to be added
+- Game data in GameFinder.db
+
+- Game images in images folder
+
+- Web page data in templates folder and static folder
+
+- Flask script in GameFinder.py
 
 ### Key files
 
