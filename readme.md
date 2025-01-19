@@ -26,7 +26,9 @@ to be added
 
 ### Key files
 
-to be added
+- GameFinder.py is a key file. It is needed to run the app and get the data calls.
+
+- home.html is another important keyfile as it is the home page
 
 ### How to run
 
