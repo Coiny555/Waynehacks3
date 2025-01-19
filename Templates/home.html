@@ -1,3 +1,4 @@
+
 <!DOCTYPE html> <!--Using HTML 5-->
 <html>
     <head>
@@ -29,6 +30,7 @@
         
         <form class="center-text" id="user-input-form">
             <label for="genre">Insert Genre:</label>
+
             <select id="genre" name="genre">
                 <option value="action">Action</option>
                 <option value="adventure">Adventure</option>
@@ -47,40 +49,80 @@
                 <option value="simulation">Simulation</option>
                 <option value="survival">Survival</option>
             </select>
+
         
             <label for="playtime">Playtime (hours):</label>
             <input type="number" id="playtime" name="playtime" min="1" max="100">
         
             <label for="aspect">Select Game Diffculty:</label>
             <select id="Diffculty" name="Diffculty">
+
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
             </select>
-        
+
+            <br><br>
+
             <button type="submit">Get Recommendations</button>
         </form>
 
         <div id="results"></div>
-    </div>
-    
-    <div class="bottom">
-        <footer>
-            <p>Repository at <a href="https://github.com/Coiny555/Waynehacks3">https://github.com/Coiny555/Waynehacks3</a></p>
-        </footer>
-    </div>
+
+    </main>
 
     <script>
-        // Javascript
-        const form = document.getElementById('user-input-form'); // document lets you access html elements
-        form.addEventListener('submit', (event) => {
-            event.preventDefault(); // prevent default submission
-            const genre = document.getElementById('genre').value;
-            const playtime = document.getElementById('playtime').value;
-            const difficulty = document.getElementById('Diffculty').value;
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("user-input-form");
+
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+
+                const genre = document.getElementById("genre").value;
+                const playtime = document.getElementById("playtime").value;
+                const difficulty = document.getElementById("difficulty").value;
+
+                try {
+                    const response = await fetch("/recommendations", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ genre, playtime, difficulty }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.status}`);
+                    }
+
+                    const results = await response.json();
+                    const resultsDiv = document.getElementById("results");
+                    resultsDiv.innerHTML = "";
+
+                    if (results.length > 0) {
+                        results.forEach((game) => {
+                            const gameElement = document.createElement("div");
+                            gameElement.innerHTML = `
+                                <div>
+                                    <img src="${game[4]}" alt="${game[0]}" width="100">
+                                    <p><strong>${game[0]}</strong> (${game[2]})</p>
+                                    <p>Genre: ${game[1]} | Playtime: ${game[3]} hours</p>
+                                </div>
+                            `;
+                            resultsDiv.appendChild(gameElement);
+                        });
+                    } else {
+                        resultsDiv.innerHTML = "<p>No games found. Try different filters!</p>";
+                    }
+                } catch (error) {
+                    console.error("Error fetching recommendations:", error);
+                    const resultsDiv = document.getElementById("results");
+                    resultsDiv.innerHTML = "<p>Something went wrong. Please try again later.</p>";
+                }
+            });
         });
     </script>
-      
-
 </body>
 </html>
+
+
