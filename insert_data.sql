@@ -87,3 +87,4 @@ VALUES ('Yakuza 0', 'Action-Adventure', '1.5', 'Medium', 8.7, 'images/yakuza_0.w
 
 INSERT INTO games (name, genre, estimated_playtime_per_session, difficulty, rating, image_path) 
 VALUES ('Call of Duty Black Ops 6', 'Shooter', '1.5', 'Medium', 7.5, 'images/cod_black_ops_6.webp');
+
